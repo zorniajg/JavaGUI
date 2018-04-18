@@ -15,6 +15,7 @@ public class GUIDemo extends JFrame
     private JPanel panel;
     private JButton biggerButton;
     private JButton smallerButton;
+    private JButton titleChangerButton;
 
     /**
      * Set up the application.
@@ -27,11 +28,14 @@ public class GUIDemo extends JFrame
         panel = new JPanel();
         biggerButton = new JButton("BIGGER");
         smallerButton = new JButton("SMALLER");
+	 titleChangerButton = new JButton("CHANGE TITLE");
         biggerButton.addActionListener(new ButtonHandler());
         smallerButton.addActionListener(new ButtonHandler());
+	 titleChangerButton.addActionListener(new ButtonHandler());
         add(panel);
         panel.add(biggerButton);
         panel.add(smallerButton);
+	 panel.add(titleChangerButton);
         setVisible(true);
     }
 
@@ -53,10 +57,14 @@ public class GUIDemo extends JFrame
             {
                 setSize(size.width + 10, size.height + 10);
             }
-            else
+            else if(e.getSource().equals(smallerButton))
             {
                 setSize(size.width - 10, size.height - 10);
             }
+	     else
+	     {
+               setTitle(JOptionPane.showInputDialog("What would you like to change the title to?"));
+	      }
 
         }
     }
